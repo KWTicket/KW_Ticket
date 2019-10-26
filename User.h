@@ -1,3 +1,4 @@
+#pragma once
 #include<stdio.h>
 #include<stdlib.h>
 #include<string>
@@ -7,7 +8,6 @@ using namespace std;
 
 class Guest {
 private:
-
 	string ID;
 	string PW;
 	string name;
@@ -15,6 +15,13 @@ private:
 	string address;
 
 public:
+	Guest(){
+		ID = " ";
+		PW = " ";
+		name = " ";
+		regNum = " ";
+		address = " ";
+	}
 	Guest(string id, string pw, string name, string regnum, string address) {
 		this->ID = id;
 		this->PW = pw;
@@ -44,14 +51,11 @@ public:
 
 class Passenger : public Guest {
 private:
-	string ID;
-	string PW;
-	string name;
-	string regNum;
-	string address;
 	int passNum;
-
 public:
+	Passenger(){
+		passNum = 0;
+	}
 	Passenger(Guest g, int passNum) : Guest(g.getID(), g.getPW(), g.getName(), g.getReg(),g.getAdd()) {
 		this->passNum = passNum;
 	}
