@@ -47,15 +47,16 @@ void addAirWay(Airplane air) {
 }
 
 int main(void) {
-	int i = 0;
+	int i, asdf;
 	vector<Airplane> airSet;
 	Airplane airplane = addAirplane();
 	airset.push_back(airplane);
 	for (i = 0; i < airSet.size(); i++) {
-		cout << i << " : " << airSet[i] << endl;
+		cout << i << " : " << airSet[i].getAp() << endl;
 	}
 	cout << "Choose airplane that you want to take : ";
 	cin >> i;
 
 	addAirWay(airSet[i]);
+	cin >> asdf;
 }
