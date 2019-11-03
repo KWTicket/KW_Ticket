@@ -1,0 +1,100 @@
+#include "Airplane.h"
+#include "User.h"
+#include <vector>
+
+Airplane addAirplane() {
+	string a, b;
+	int c, d;
+
+	cout << "Input airplane name : ";
+	cin >> a;
+
+	cout << "Input company name : ";
+	cin >> b;
+
+	cout << "Input airplane's row : ";
+	cin >> c;
+
+	cout << "Input airplane's column : ";
+	cin >> d;
+
+	Airplane airplane(a, b, c, d);
+	airplane.test();
+	cout << "Complete!!" << endl;
+
+	return airplane;
+}
+
+Flight addAirWay(Airplane air) {
+	string e, f, g, h, i;
+
+	cout << "Input your departure place : ";
+	cin >> e;
+
+	cout << "Input your arrival place : ";
+	cin >> f;
+
+	cout << "Input your departure day : ";
+	cin >> g;
+
+	cout << "Input your departure time : ";
+	cin >> h;
+
+	cout << "Input your arrival time : ";
+	cin >> i;
+
+	Flight airway(air, e, f, g, h, i);
+	airway.test();
+	airway.viewSit();
+	cout << "Complete!!" << endl;
+
+	return airway;
+}
+
+void Show_Airplane_Status(vector <Airplane> Check_air, vector <Flight> Check_flight) {
+	for (int a = 0; a < Check_air.size(); a++) {
+		cout << a + 1 << "Airplane name : " << Check_air[a].getAp() << endl;
+		cout << "  Company : " << Check_air[a].getCom() << endl;
+		cout << "  Size : row " << Check_air[a].getRow() << "   column " << Check_air[a].getCol() << endl;
+		cout << "  departure airport : " << Check_flight[a].getDep() << endl;
+		cout << "  arrival airport : " << Check_flight[a].getDep() << endl;
+		cout << "  departure date : " << Check_flight[a].getDay() << endl;
+		cout << "  departure time : " << Check_flight[a].getDt() << endl;
+		cout << "  arrival time : " << Check_flight[a].getAt() << endl;
+	}
+}
+
+int main(void) {
+	int i, j, asdf;
+	vector<Airplane> airSet;
+	vector<Flight> flightSet;
+	while (1) {
+		cout << " IF you want to add airplane information, input number 1\n";
+		cout << " IF you want to add airplane's flight plan, input number 2\n";
+		cout << " IF you want to check the present state of scedule, input number 3\n";
+		cout << " >>> ";
+
+		cin >> j;
+		cout << endl;
+
+		if (j == 1)
+		{
+			Airplane airplane = addAirplane();
+			airSet.push_back(airplane);
+		}
+		else if (j == 2)
+		{
+			int k = 0;
+			for (i = 0; i < airSet.size(); i++) {
+				cout << i+1 << " : " << airSet[i].getAp() << endl;
+			}
+			cout << "Choose airplane that you want to add : ";
+			cin >> k;
+			flightSet[k-1] = addAirWay(airSet[k-1]);
+		}
+		else if (j == 3)
+			Show_Airplane_Status(airSet, flightSet);
+		else
+			cout << "Error! Please input a proper value.\n";
+	}
+}
