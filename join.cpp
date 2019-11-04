@@ -15,11 +15,7 @@ Guest join()
 	cin >> rn;
 	cout << "주소를 입력해주세요: ";
 	cin >> ad;
-	cout << "가입이 완료되었습니다.";
+	cout << "가입이 완료되었습니다." << endl;
 	Guest g(id, pw, na, rn, ad);
 	return g;
-}
-int main() {
-	vector<Guest> guest;
-	guest.push_back(join());
 }

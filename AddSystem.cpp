@@ -20,11 +20,11 @@ Airplane addAirplane() {
 
 	Airplane airplane(a, b, c, d);
 	airplane.test();
-
+	cout << "Complete!!" << endl;
 	return airplane;
 }
 
-void addFlight(Airplane air) {
+Flight addFlight(Airplane air) {
 	string e, f, g, h, i;
 
 	cout << "Input your departure place : ";
@@ -42,22 +42,9 @@ void addFlight(Airplane air) {
 	cout << "Input your arrival time : ";
 	cin >> i;
 
-	Flight airway(air, e, f, g, h, i);
-	airway.test();
-	airway.viewSit();
-}
-
-int main(void) {
-	int i, asdf;
-	vector<Airplane> airSet;
-	Airplane airplane = addAirplane();
-	airset.push_back(airplane);
-	for (i = 0; i < airSet.size(); i++) {
-		cout << i << " : " << airSet[i].getAp() << endl;
-	}
-	cout << "Choose airplane that you want to take : ";
-	cin >> i;
-
-	addFlight(airSet[i]);
-	cin >> asdf;
+	Flight flight(air, e, f, g, h, i);
+	flight.test();
+	flight.viewSit();
+	cout << "Complete!!" << endl;
+	return flight;
 }
