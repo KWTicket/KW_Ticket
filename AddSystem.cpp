@@ -3,7 +3,8 @@
 #include <vector>
 
 Airplane addAirplane() {
-	string a, b, c, d;
+	string a, b;
+	int c, d;
 
 	cout << "Input airplane name : ";
 	cin >> a;
@@ -23,7 +24,7 @@ Airplane addAirplane() {
 	return airplane;
 }
 
-void addAirWay(Airplane air) {
+void addFlight(Airplane air) {
 	string e, f, g, h, i;
 
 	cout << "Input your departure place : ";
@@ -57,6 +58,6 @@ int main(void) {
 	cout << "Choose airplane that you want to take : ";
 	cin >> i;
 
-	addAirWay(airSet[i]);
+	addFlight(airSet[i]);
 	cin >> asdf;
 }
