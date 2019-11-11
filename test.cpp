@@ -1,60 +1,47 @@
 #include "Airplane.h"
 
+Guest join();
+Guest login(vector<Guest> DB);
+Airplane addAirplane();
+Flight addFlight(Airplane air);
+void Show_Airplane_Status(vector <Airplane> Check_air);
+void Show_Flight_Status(vector <Flight> Check_flight);
+
 int main() {
-	int asdf;
-	string a, b, c, d, e;
-	string g, h, i, j, k, l, m;
-	int f,n,o;
-	cout << "Input ID : ";
-	cin >> a;
-	cout << "Input PW : ";
-	cin >> b;
-	cout << "Input your name : ";
-	cin >> c;
-	cout << "Input your register number : ";
-	cin >> d;
-	cout << "Input your address : ";
-	cin >> e;
-	Guest aa(a,b,c,d,e);
 
-	cout << "\n -----Passenger Input-----" << endl;
-	cout << "Input your passport number : ";
-	cin >> f;
-	Passenger bb(aa,f);
+	vector<Airplane> Airplane_DB;
+	vector<Flight> Flight_DB;
+	vector<Guest> Guest_DB;
+	Guest Admin("admin", "1q2w3e4r!", "admin", "admin", "admin");
+	Guest_DB.push_back(Admin);
+	Guest User;
 
-	aa.test();
-	cout << endl;
-	bb.test();
-	cout << "Input airplane name : ";
-	cin >> g;
+	int a, b;
+	while (1) {
+		cout << "WELCOME! \n\n 1. SIGN UP 2. SIGN IN 3. EXIT" << endl;
+		cin >> a;
+		if (a == 1)
+			Guest_DB.push_back(join());
+		else if (a == 2)
+			User = login(Guest_DB);
+		if (User.getName() == "admin") {
+			while (1) {
+				cout << "1. 비행기 추가, 2. 비행편 추가 3.나가기" << endl;
+				cin >> b;
+				if (b == 1)
+					Airplane_DB.push_back(addAirplane());
+				else if (b == 2) {
+					int k = 0;
+					Show_Airplane_Status(Airplane_DB);
+					cout << "Choose airplane that you want to add : ";
+					cin >> k;
+					Flight_DB.push_back(addFlight(Airplane_DB[k - 1]));
+				}
+				else if (b == 3)
+					Show_Flight_Status(Flight_DB);
+					break;
+				}
 
-	cout << "Input company name : ";
-	cin >> h;
-	cout << "Input airplane's row : ";
-	cin >> n;
-	cout << "Input airplane's column : ";
-	cin >> o;
-	Airplane cc(g, h, n, o);
-
-	cout << "Input your departure place : ";
-	cin >> i;
-	cout << "Input your arrival place : ";
-	cin >> j;
-	cout << "Input your departure day : ";
-	cin >> k;
-	cout << "Input your departure time : ";
-	cin >> l;
-	cout << "Input your arrival time : ";
-	cin >> m;
-	Flight dd(cc, i, j, k, l, m);
-
-	Guest asd("a", "b", "c", "d", "e");
-	Passenger zxcv(asd, 1234);
-	cc.test();
-	cout << endl;
-	dd.test();
-	cout << endl;
-	dd.testest(zxcv);
-	dd.viewSit();
-	cin >> asdf;
-}
+			}
+		}
+	}

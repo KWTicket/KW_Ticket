@@ -3,8 +3,8 @@
 #include <vector>
 
 Airplane addAirplane() {
-   string a, b;
-   int c, d;
+	string a, b;
+	int c, d;
 
    cout << "Input airplane name : ";
    cin >> a;
@@ -48,6 +48,7 @@ Flight addFlight(Airplane air) {
    cout << "Complete!!" << endl;
    return flight;
 }
+
 void Show_Airplane_Status(vector <Airplane> Check_air){
    for (int a = 0; a < Check_air.size(); a++) {
       cout << a + 1 << "Airplane name : " << Check_air[a].getAp() << endl;

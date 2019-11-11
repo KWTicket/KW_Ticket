@@ -17,7 +17,7 @@ public:
 		this->col = col;
 		
 		sit = new Passenger*[row];			// 2차원
-		for (int i = 0; i < col; i++) {		// 동적배열
+		for (int i = 0; i < row; i++) {		// 동적배열
 			sit[i] = new Passenger[col];	// 생성문
 		}
 
@@ -35,7 +35,10 @@ public:
 		return col;
 	}
 	void test() {
-		cout << apName << '\n' << comName << '\n' << row << '\n' << col << endl;
+		cout << '\n' << "airplane name : " << apName << '\n' <<
+				"company name : " << comName << '\n' <<
+				"row : " << row << '\n' <<
+				"column : " << col << endl;
 	}
 };
 
@@ -58,6 +61,11 @@ public:
 		this->depTime = dt;
 		this->arrTime = at;
 	}
+
+	Airplane getAir() {
+		return ap;
+	}
+
 	string getDep() {
 		return departure;
 	}
@@ -75,7 +83,11 @@ public:
 	}
 	void test() {
 		ap.test();
-		cout << departure << '\n' << arrival << '\n' << day << '\n' << depTime << '\n' << arrTime;
+		cout << "departure : " << departure << '\n' <<
+				"arrival : " << arrival << '\n' <<
+				"day : " << day << '\n' <<
+				"depTime : " << depTime << '\n' <<
+				"arrTime : " << arrTime << endl;
 	}
 	void viewSit(){
 		for (int i = 0; i < ap.getRow(); i++) {
@@ -86,8 +98,5 @@ public:
 			}
 			cout << endl;
 		}	
-	}
-	void testest(Passenger p) {
-		ap.sit[3][3] = p;
 	}
 };
