@@ -61,6 +61,11 @@ public:
 		this->depTime = dt;
 		this->arrTime = at;
 	}
+
+	Airplane getAir() {
+		return ap;
+	}
+
 	string getDep() {
 		return departure;
 	}

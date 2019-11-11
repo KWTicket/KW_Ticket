@@ -5,6 +5,7 @@ Guest login(vector<Guest> DB);
 Airplane addAirplane();
 Flight addFlight(Airplane air);
 void Show_Airplane_Status(vector <Airplane> Check_air);
+void Show_Flight_Status(vector <Flight> Check_flight);
 
 int main() {
 
@@ -37,6 +38,7 @@ int main() {
 					Flight_DB.push_back(addFlight(Airplane_DB[k - 1]));
 				}
 				else if (b == 3)
+					Show_Flight_Status(Flight_DB);
 					break;
 				}
 
