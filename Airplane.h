@@ -97,6 +97,9 @@ public:
 				else cout << "[бс]";
 			}
 			cout << endl;
-		}	
+		}
+	}
+	void reservation(int row, int col, Passenger passenger) {
+		ap.sit[row - 1][col - 1] = passenger;
 	}
 };
