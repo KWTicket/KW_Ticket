@@ -14,7 +14,7 @@ Guest login(vector<Guest> DB) {
 
 			if (DB[i].getID() == a) {
 				while (1) {
-					cout << "Input you Password : ";
+					cout << "Input your Password : ";
 					cin >> b;
 
 					if (DB[i].getPW() == b) {
