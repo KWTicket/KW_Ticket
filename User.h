@@ -3,6 +3,7 @@
 #include<stdlib.h>
 #include<string>
 #include<iostream>
+#include<vector>
 
 using namespace std;
 
@@ -45,7 +46,11 @@ public:
 		return address;
 	}
 	void test() {
-		cout << ID << '\n' << PW << '\n' << name << '\n' << regNum << '\n' << address << endl;
+		cout << "ID : " << ID << '\n' <<
+				"PW : " << PW << '\n' <<
+				"name : " << name << '\n' <<
+				"register number : " << regNum << '\n' <<
+				"address : " << address << endl;
 	}
 };
 
@@ -64,7 +69,7 @@ public:
 	}
 	void test() {
 		Guest::test();
-		cout << passNum << endl;
+		cout << "passport number : " << passNum << endl;
 	}
 };
 
