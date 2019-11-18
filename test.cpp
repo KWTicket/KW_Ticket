@@ -1,6 +1,9 @@
 #include "Airplane.h"
 
+
+Guest join(vector<Guest> DB);
 Guest join();
+
 Guest login(vector<Guest> DB);
 Airplane addAirplane();
 Flight addFlight(Airplane air);
@@ -19,22 +22,26 @@ int main() {
 
 	int a=0, b=0, c=0;
 	while (1) {
-		cout << "WELCOME! \n\n 1. È¸¿ø°¡ÀÔ   2. ·Î±×ÀÎ   3. ³ª°¡±â" << endl;
+		cout << "WELCOME! \n\n 1. íšŒì›ê°€ìž…   2. ë¡œê·¸ì¸   3. ë‚˜ê°€ê¸°" << endl;
 		cin >> a;
 		if (a == 1)
+
+			Guest_DB.push_back(join(Guest_DB));
+
 			Guest_DB.push_back(join());
+
 		else if (a == 2) {
 			User = login(Guest_DB);
 			if (User.getName() == "admin") {
 				while (1) {
-					cout << "1. ºñÇà±â Ãß°¡   2. ºñÇàÆí Ãß°¡   3. ³ª°¡±â" << endl;
+					cout << "1. ë¹„í–‰ê¸° ì¶”ê°€   2. ë¹„í–‰íŽ¸ ì¶”ê°€   3. ë‚˜ê°€ê¸°" << endl;
 					cin >> b;
 					if (b == 1)
 						Airplane_DB.push_back(addAirplane());
 					else if (b == 2) {
 						int k = 0;
 						Show_Airplane_Status(Airplane_DB);
-						cout << "Ãß°¡ÇÏ·Á´Â ºñÇàÆíÀÇ ºñÇà±â¸¦ ¼±ÅÃÇÏ¼¼¿ä : ";
+						cout << "ì¶”ê°€í•˜ë ¤ëŠ” ë¹„í–‰íŽ¸ì˜ ë¹„í–‰ê¸°ë¥¼ ì„ íƒí•˜ì„¸ìš” : ";
 						cin >> k;
 						Flight_DB.push_back(addFlight(Airplane_DB[k - 1]));
 					}
@@ -46,26 +53,45 @@ int main() {
 			}
 			else if (User.getName() != "admin") {
 				while (1) {
-					cout << "1. ¿©±Ç µî·Ï   2. ¿¹¾à   3. ¿¹¾à È®ÀÎ   4. ¿¹¾à Ãë¼Ò	5. ³ª°¡±â" << endl;
+
+					cout << "1. ì—¬ê¶Œ ë“±ë¡   2. ì˜ˆì•½   3. ì˜ˆì•½ í™•ì¸   4. ë‚˜ê°€ê¸°" << endl;
+
+					cout << "1. ì—¬ê¶Œ ë“±ë¡   2. ì˜ˆì•½   3. ì˜ˆì•½ í™•ì¸   4. ì˜ˆì•½ ì·¨ì†Œ	5. ë‚˜ê°€ê¸°" << endl;
+
 					cin >> c;
 					if (c == 1) {
 						int passNum;
-						cout << "¿©±Ç ¹øÈ£¸¦ ÀÔ·ÂÇÏ¼¼¿ä : ";
+						cout << "ì—¬ê¶Œ ë²ˆí˜¸ë¥¼ ìž…ë ¥í•˜ì„¸ìš” : ";
 						cin >> passNum;	
 						pass = Passenger(User, passNum);
 					}
+
+					else if (c == 2) {
+						int k = 0;
+						Show_Flight_Status(Flight_DB);
+						cout << "ì´ìš©í•˜ë ¤ëŠ” í•­ê³µê¸°ë¥¼ ì„ íƒí•˜ì„¸ìš” : ";
+						cin >> k;
+						Flight_DB[k - 1].reservation(pass);
+					}
+					else if (c == 3) {
+						for (int i = 0; i < Flight_DB.size(); i++) {
+							Flight_DB[i].checkReserve(pass);
+						}
+					}
+					if (c == 4)
+
 					if (c == 2) {
 						int k = 0, row = 0, col = 0;						
 						Show_Flight_Status(Flight_DB);
-						cout << "ÀÌ¿ëÇÏ·Á´Â Ç×°ø±â¸¦ ¼±ÅÃÇÏ¼¼¿ä : ";
+						cout << "ì´ìš©í•˜ë ¤ëŠ” í•­ê³µê¸°ë¥¼ ì„ íƒí•˜ì„¸ìš” : ";
 						cin >> k;
-						cout << "ÁÂ¼®À» ¼±ÅÃÇÏ¼¼¿ä" << endl;
+						cout << "ì¢Œì„ì„ ì„ íƒí•˜ì„¸ìš”" << endl;
 						Flight_DB[k - 1].viewSit();
-						cout << "Çà : ";
+						cout << "í–‰ : ";
 						cin >> row;
-						cout << "¿­ : ";
+						cout << "ì—´ : ";
 						cin >> col;
-						cout << "¿¹¾àÀÌ ¿Ï·áµÇ¾ú½À´Ï´Ù" << endl;
+						cout << "ì˜ˆì•½ì´ ì™„ë£Œë˜ì—ˆìŠµë‹ˆë‹¤" << endl;
 						Flight_DB[k - 1].reservation(row, col, pass);
 						Flight_DB[k - 1].viewSit();
 					}
@@ -76,19 +102,20 @@ int main() {
 						if (c == 4) {
 							int k = 0, row = 0, col = 0;
 							Show_Flight_Status(Flight_DB);
-							cout << "ÀÌ¿ëÇÏ·Á´Â Ç×°ø±â¸¦ ¼±ÅÃÇÏ¼¼¿ä : ";
+							cout << "ì´ìš©í•˜ë ¤ëŠ” í•­ê³µê¸°ë¥¼ ì„ íƒí•˜ì„¸ìš” : ";
 							cin >> k;
-							cout << "»èÁ¦ÇÒ ÁÂ¼®À» ¼±ÅÃÇÏ¼¼¿ä" << endl;
+							cout << "ì‚­ì œí•  ì¢Œì„ì„ ì„ íƒí•˜ì„¸ìš”" << endl;
 							Flight_DB[k - 1].viewSit();
-							cout << "Çà : ";
+							cout << "í–‰ : ";
 							cin >> row;
-							cout << "¿­ : ";
+							cout << "ì—´ : ";
 							cin >> col;
-							cout << "Ãë¼Ò°¡ ¿Ï·áµÇ¾ú½À´Ï´Ù!" << endl;
+							cout << "ì·¨ì†Œê°€ ì™„ë£Œë˜ì—ˆìŠµë‹ˆë‹¤!" << endl;
 							Flight_DB[k - 1].cancelReserve(row, col, pass);
 							Flight_DB[k - 1].viewSit();
 						}
 					if (c == 5)
+
 						break;
 				}
 			}
