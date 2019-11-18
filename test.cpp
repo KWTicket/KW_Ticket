@@ -1,6 +1,6 @@
 #include "Airplane.h"
 
-Guest join();
+Guest join(vector<Guest> DB);
 Guest login(vector<Guest> DB);
 Airplane addAirplane();
 Flight addFlight(Airplane air);
@@ -22,7 +22,7 @@ int main() {
 		cout << "WELCOME! \n\n 1. 회원가입   2. 로그인   3. 나가기" << endl;
 		cin >> a;
 		if (a == 1)
-			Guest_DB.push_back(join());
+			Guest_DB.push_back(join(Guest_DB));
 		else if (a == 2) {
 			User = login(Guest_DB);
 			if (User.getName() == "admin") {
