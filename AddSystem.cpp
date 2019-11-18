@@ -54,11 +54,6 @@ void Show_Airplane_Status(vector <Airplane> Check_air){
       cout << a + 1 << "Airplane name : " << Check_air[a].getAp() << endl;
       cout << "  Company : " << Check_air[a].getCom() << endl;
       cout << "  Size : row " << Check_air[a].getRow() << "   column " << Check_air[a].getCol() << endl;
-      /*cout << "  departure airport : " << Check_flight[a].getDep() << endl;
-      cout << "  arrival airport : " << Check_flight[a].getDep() << endl;
-      cout << "  departure date : " << Check_flight[a].getDay() << endl;
-      cout << "  departure time : " << Check_flight[a].getDt() << endl;
-      cout << "  arrival time : " << Check_flight[a].getAt() << endl;*/
    }
 }
 void Show_Flight_Status(vector <Flight> Check_flight) {
