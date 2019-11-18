@@ -1,5 +1,5 @@
 #include "User.h"
-#include <vector>
+
 
 
 int checkid(vector<Guest> DB, string id) {
@@ -11,32 +11,44 @@ int checkid(vector<Guest> DB, string id) {
 	return 2;
 }
 
+bool is_digit(string rn) {
+	return atoi(rn.c_str()) != 0 || rn.compare("0") == 0;
+}
+
+int checkrn(string rn) {
+	if (rn.size() != 13|| (!is_digit(rn)))
+		return 1;
+}
+
 Guest join(vector<Guest> DB)
-  
-Guest join()
 {
 	string na, id, pw, rn, ad;
-	cout << "-----------íšŒì›ê°€ìž…-----------" << endl;
-	cout << "ì´ë¦„ì„ ìž…ë ¥í•´ì£¼ì„¸ìš”: ";
+	cout << "-----------È¸¿ø°¡ÀÔ-----------" << endl;
+	cout << "ÀÌ¸§À» ÀÔ·ÂÇØÁÖ¼¼¿ä: ";
 	cin >> na;
-	cout << "ì•„ì´ë””ë¥¼ ìž…ë ¥í•´ì£¼ì„¸ìš”: ";
+	cout << "¾ÆÀÌµð¸¦ ÀÔ·ÂÇØÁÖ¼¼¿ä: ";
 	cin >> id;
-
 	int cid=checkid(DB,id);
 	while (cid == 1) {
-		cout << "ì´ë¯¸ ì¡´ìž¬í•˜ëŠ” ì•„ì´ë””ìž…ë‹ˆë‹¤.\n";
-		cout << "ì•„ì´ë””ë¥¼ ë‹¤ì‹œ ìž…ë ¥í•´ì£¼ì„¸ìš”: ";
+		cout << "ÀÌ¹Ì Á¸ÀçÇÏ´Â ¾ÆÀÌµðÀÔ´Ï´Ù.\n";
+		cout << "¾ÆÀÌµð¸¦ ´Ù½Ã ÀÔ·ÂÇØÁÖ¼¼¿ä: ";
 		cin >> id;
 		cid = checkid(DB, id);
 	}
-
-	cout << "ë¹„ë°€ë²ˆí˜¸ë¥¼ ìž…ë ¥í•´ì£¼ì„¸ìš”: ";
+	cout << "ºñ¹Ð¹øÈ£¸¦ ÀÔ·ÂÇØÁÖ¼¼¿ä: ";
 	cin >> pw;
-	cout << "ì£¼ë¯¼ë²ˆí˜¸ë¥¼ ìž…ë ¥í•´ì£¼ì„¸ìš”: ";
+	cout << "ÁÖ¹Îµî·Ï¹øÈ£¸¦ ÀÔ·ÂÇØÁÖ¼¼¿ä(-Á¦¿Ü): ";
 	cin >> rn;
-	cout << "ì£¼ì†Œë¥¼ ìž…ë ¥í•´ì£¼ì„¸ìš”: ";
+	int crn = checkrn(rn);
+	while (crn == 1) {
+		cout << "¿Ã¹Ù¸£Áö ¾ÊÀº Çü½ÄÀÔ´Ï´Ù.\n";
+		cout << "´Ù½Ã ÀÔ·ÂÇØÁÖ¼¼¿ä: ";
+		cin >> rn;
+		crn = checkrn(rn);
+	}
+	cout << "ÁÖ¼Ò¸¦ ÀÔ·ÂÇØÁÖ¼¼¿ä: ";
 	cin >> ad;
-	cout << "ê°€ìž…ì´ ì™„ë£Œë˜ì—ˆìŠµë‹ˆë‹¤." << endl;
+	cout << "°¡ÀÔÀÌ ¿Ï·áµÇ¾ú½À´Ï´Ù." << endl;
 	Guest g(id, pw, na, rn, ad);
 	return g;
 }
