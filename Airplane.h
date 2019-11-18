@@ -15,6 +15,13 @@ public:
 		this->row = row;
 		this->col = col;
 
+		
+		sit = new Passenger*[row];			// 2ì°¨ì›
+		for (int i = 0; i < row; i++) {		// ë™ì ë°°ì—´
+			sit[i] = new Passenger[col];	// ìƒì„±ë¬¸
+		}
+
+
 	}
 	string getAp() {
 		return apName;
@@ -56,9 +63,9 @@ public:
 		this->depTime = dt;
 		this->arrTime = at;
 
-		sit = new Passenger*[getAir().getRow()];			// 2Â÷¿ø
-		for (int i = 0; i < getAir().getRow(); i++) {		// µ¿Àû¹è¿­
-			sit[i] = new Passenger[getAir().getCol()];	// »ı¼º¹®
+		sit = new Passenger*[getAir().getRow()];			// 2ì°¨ì›
+		for (int i = 0; i < getAir().getRow(); i++) {		// ë™ì ë°°ì—´
+			sit[i] = new Passenger[getAir().getCol()];	// ìƒì„±ë¬¸
 		}
 	}
 
@@ -93,49 +100,76 @@ public:
 		for (int i = 0; i < ap.getRow(); i++) {
 			for (int j = 0; j < ap.getCol(); j++) {
 				if (sit[i][j].getPass() == 0)
-					cout << "[¡à]";
-				else cout << "[¡á]";
+					cout << "[â–¡]";
+				else cout << "[â– ]";
 			}
 			cout << endl;
 		}
+
 	}
 
 	void reservation(Passenger passenger) {
 
 		int row = 0, col = 0;
 
-		cout << "ÁÂ¼®À» ¼±ÅÃÇÏ¼¼¿ä" << endl;
+		cout << "ì¢Œì„ì„ ì„ íƒí•˜ì„¸ìš”" << endl;
 		viewSit();
-		cout << "Çà : ";
+		cout << "í–‰ : ";
 		cin >> row;
-		cout << "¿­ : ";
+		cout << "ì—´ : ";
 		cin >> col;
 
 		if (sit[row - 1][col - 1].getPass() != 0)
-			cout << "ÀÌ¹Ì ¼±ÅÃµÈ ÁÂ¼®ÀÔ´Ï´Ù." << endl;
+			cout << "ì´ë¯¸ ì„ íƒëœ ì¢Œì„ì…ë‹ˆë‹¤." << endl;
 		else {
 			for (int i = 0; i < ap.getRow(); i++) {
 				for (int j = 0; j < ap.getCol(); j++) {
 					if (sit[i][j].getPass() == passenger.getPass()) {
-						cout << "ÀÌ¹Ì ÀÌ ºñÇà±â¿¡ ¿¹¾à µÇ¾î ÀÖ½À´Ï´Ù." << endl;
-						cout << "´Ù½Ã ¿¹¾à ÇÏ½Ã·Á¸é ±âÁ¸ ¿¹¾àÀ» Ãë¼ÒÇØÁÖ¼¼¿ä." << endl;
+						cout << "ì´ë¯¸ ì´ ë¹„í–‰ê¸°ì— ì˜ˆì•½ ë˜ì–´ ìˆìŠµë‹ˆë‹¤." << endl;
+						cout << "ë‹¤ì‹œ ì˜ˆì•½ í•˜ì‹œë ¤ë©´ ê¸°ì¡´ ì˜ˆì•½ì„ ì·¨ì†Œí•´ì£¼ì„¸ìš”." << endl;
 						return;
 					}
 				}
 			}
 			sit[row - 1][col - 1] = passenger;
-			cout << "¿¹¾àÀÌ ¿Ï·áµÇ¾ú½À´Ï´Ù." << endl;
+			cout << "ì˜ˆì•½ì´ ì™„ë£Œë˜ì—ˆìŠµë‹ˆë‹¤." << endl;
 			viewSit();
 		}		
 	}
 	void checkReserve(Passenger passenger) {
-		cout << passenger.getName() << "´ÔÀÇ ¿¹¾à Á¤º¸ÀÔ´Ï´Ù." << endl;
+		cout << passenger.getName() << "ë‹˜ì˜ ì˜ˆì•½ ì •ë³´ì…ë‹ˆë‹¤." << endl;
 		for (int i = 0; i < ap.getRow(); i++) {
 			for (int j = 0; j < ap.getCol(); j++) {
 				if (sit[i][j].getPass() == passenger.getPass()) {
-					test(); // ÀúÈñ°¡ Ãâ·ÂÀ» ¾î¶»°Ô ÇÒÁö¿¡ µû¶ó¼­ ´Ş¶óÁú ¿¹Á¤ÀÔ´Ï´Ù.
+					test(); // ì €í¬ê°€ ì¶œë ¥ì„ ì–´ë–»ê²Œ í• ì§€ì— ë”°ë¼ì„œ ë‹¬ë¼ì§ˆ ì˜ˆì •ì…ë‹ˆë‹¤.
 				}
 			}
 		}
+
+	}
+	void reservation(int row, int col, Passenger passenger) {
+		ap.sit[row - 1][col - 1] = passenger;
+	}
+
+	void checkReserve(Passenger passenger) {
+		cout << passenger.getName() << "ë‹˜ì˜ ì˜ˆì•½ ì •ë³´ì…ë‹ˆë‹¤." << endl;
+		for (int i = 0; i < ap.getRow(); i++) {
+			for (int j = 0; j < ap.getCol(); j++) {
+				if (ap.sit[i][j].getPass() == passenger.getPass()) {
+					cout << "  Departure place : " << departure << endl;
+					cout << "  Arrival place : " << arrival << endl;
+					cout << "  Departure date " << day << endl;
+					cout << "  Departure time : " << depTime << endl;
+					cout << "  Arrival time : " << arrTime << endl;
+					cout << "  row : " << ap.getRow() << "   column " << ap.getCol() << endl;
+				}
+			}
+		}
+	}
+
+	void cancelReserve(int row, int col, Passenger passenger) {
+		cout << passenger.getName() << "ë‹˜ì˜ ì˜ˆì•½ì„ ì·¨ì†Œí•©ë‹ˆë‹¤." << endl;
+		ap.sit[row - 1][col - 1].getPass() == NULL;
+
 	}
 };
