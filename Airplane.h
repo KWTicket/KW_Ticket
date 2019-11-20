@@ -104,32 +104,32 @@ public:
 
 		int row = 0, col = 0;
 
-		cout << "좌석을 선택하세요" << endl;
+		cout << "Choose Seat\n";
 		viewSit();
-		cout << "행 : ";
+		cout << "Row : ";
 		cin >> row;
-		cout << "열 : ";
+		cout << "Column : ";
 		cin >> col;
 
 		if (sit[row - 1][col - 1].getPass() != 0)
-			cout << "이미 선택된 좌석입니다." << endl;
+			cout << "This seat is already selected." << endl;
 		else {
 			for (int i = 0; i < ap.getRow(); i++) {
 				for (int j = 0; j < ap.getCol(); j++) {
 					if (sit[i][j].getPass() == passenger.getPass()) {
-						cout << "이미 이 비행기에 예약 되어 있습니다." << endl;
-						cout << "다시 예약 하시려면 기존 예약을 취소해주세요." << endl;
+						cout << "You already made a reservation on this airplane." << endl;
+						cout << "If you want to book again, please cancel a reservation that you already made." << endl;
 						return;
 					}
 				}
 			}
 			sit[row - 1][col - 1] = passenger;
-			cout << "예약이 완료되었습니다." << endl;
+			cout << "Reservation Complete." << endl;
 			viewSit();
 		}
 	}
 	void checkReserve(Passenger passenger) {
-		cout << passenger.getName() << "님의 예약 정보입니다." << endl;
+		cout << passenger.getName() << "'s information : " << endl;
 		for (int i = 0; i < ap.getRow(); i++) {
 			for (int j = 0; j < ap.getCol(); j++) {
 				if (sit[i][j].getPass() == passenger.getPass()) {
@@ -150,7 +150,7 @@ public:
 	}
 
 	void cancelReserve(int row, int col, Passenger passenger) {
-		cout << passenger.getName() << "님의 예약을 취소합니다." << endl;
+		cout << passenger.getName() << "'s reservation Canceling ..." << endl;
 		Guest temp("", "", "", "", "");
 		Passenger tem(temp, 0);
 		sit[row - 1][col - 1] = tem;
