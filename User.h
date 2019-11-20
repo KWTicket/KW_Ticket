@@ -72,4 +72,3 @@ public:
 		cout << "passport number : " << passNum << endl;
 	}
 };
-
