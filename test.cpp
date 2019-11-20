@@ -1,6 +1,8 @@
 #include "Airplane.h"
 
-Guest join();
+using namespace std;
+
+Guest join(vector<Guest> DB);
 Guest login(vector<Guest> DB);
 Airplane addAirplane();
 Flight addFlight(Airplane air);
@@ -19,29 +21,29 @@ int main() {
 
 	int a = 0, b = 0, c = 0;
 	while (1) {
-		cout << "WELCOME! \n\n 1. 회원가입   2. 로그인   3. 나가기" << endl;
+		cout << "WELCOME! \n\n 1. Join   2. Login   3. Exit \n";
 		cin >> a;
 		if (a == 1)
-			Guest_DB.push_back(join());
+			Guest_DB.push_back(join(Guest_DB));
 		else if (a == 2) {
 			User = login(Guest_DB);
 			if (User.getName() == "admin") {
 				while (1) {
-					cout << "1. 비행기 추가   2. 비행편 추가   3.비행기 객석 확인	4. 나가기" << endl;
+					cout << "1. Add Airplane   2. Add Flight   3. Check Seats	4. Exit\n";
 					cin >> b;
 					if (b == 1)
 						Airplane_DB.push_back(addAirplane());
 					else if (b == 2) {
 						int k = 0;
 						Show_Airplane_Status(Airplane_DB);
-						cout << "추가하려는 비행편의 비행기를 선택하세요 : ";
+						cout << "Choose Airplane that you want to Add Flight : ";
 						cin >> k;
 						Flight_DB.push_back(addFlight(Airplane_DB[k - 1]));
 					}
 					else if (b == 3) {
 						Show_Airplane_Status(Airplane_DB);
 						int airNum;
-						cout << "객석을 확인할 비행기를 선택하세요 : ";
+						cout << "Choose Airplane that you want to Check Seats : ";
 						cin >> airNum;
 						Flight_DB[airNum].getAir().test();
 						Flight_DB[airNum].viewSit();
@@ -52,7 +54,7 @@ int main() {
 										Guest_DB[a].test();
 									}
 									else if (Guest_DB[a].getName() != Flight_DB[airNum].sit[i][j].getName())
-										cout << "빈 자리입니다!" << endl;
+										cout << "Empty Sit!" << endl;
 								}
 							}
 						}
@@ -65,18 +67,18 @@ int main() {
 			}
 			else if (User.getName() != "admin") {
 				while (1) {
-					cout << "1. 여권 등록   2. 예약   3. 예약 확인   4. 예약 취소	5. 나가기" << endl;
+					cout << "1. Register PassortNumber   2. Reservation   3. Check Reservation   4. Cancel Reservation	5. Exit\n";
 					cin >> c;
 					if (c == 1) {
 						int passNum;
-						cout << "여권 번호를 입력하세요 : ";
+						cout << "Input Passport Number : ";
 						cin >> passNum;
 						pass = Passenger(User, passNum);
 					}
 					else if (c == 2) {
 						int k = 0;
 						Show_Flight_Status(Flight_DB);
-						cout << "이용하려는 항공기를 선택하세요 : ";
+						cout << "Choose Airplane that you want to Use : ";
 						cin >> k;
 						Flight_DB[k - 1].reservation(pass);
 					}
@@ -87,15 +89,15 @@ int main() {
 						if (c == 4) {
 							int k = 0, row = 0, col = 0;
 							Show_Flight_Status(Flight_DB);
-							cout << "이용하려는 항공기를 선택하세요 : ";
+							cout << "Choose Airplane that you want to Use : ";
 							cin >> k;
-							cout << "삭제할 좌석을 선택하세요" << endl;
+							cout << "Choose Seat that you want to Cancel.\n";
 							Flight_DB[k - 1].viewSit();
-							cout << "행 : ";
+							cout << "Row : ";
 							cin >> row;
-							cout << "열 : ";
+							cout << "Column : ";
 							cin >> col;
-							cout << "취소가 완료되었습니다!" << endl;
+							cout << "Cancelation Complete!" << endl;
 							Flight_DB[k - 1].cancelReserve(row, col, pass);
 							Flight_DB[k - 1].viewSit();
 						}
