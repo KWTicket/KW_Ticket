@@ -42,7 +42,7 @@ Guest join(vector<Guest> DB)
 	int crn = checkrn(rn);
 	while (crn == 1) {
 		cout << "It's an abnormal formation.\n";
-		cout << "Input Password again : ";
+		cout << "Input Resident Registration Number again : ";
 		cin >> rn;
 		crn = checkrn(rn);
 	}
