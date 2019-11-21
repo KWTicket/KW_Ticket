@@ -64,7 +64,7 @@ int main() {
 						break;
 					}
 				}
-			}
+			}//admin¿œ∂ß
 			else if (User.getName() != "admin") {
 				while (1) {
 					cout << "1. Register PassortNumber   2. Reservation   3. Check Reservation   4. Cancel Reservation	5. Exit\n";
@@ -82,32 +82,32 @@ int main() {
 						cin >> k;
 						Flight_DB[k - 1].reservation(pass);
 					}
-					if (c == 3) {
-						for (int i = 0; i < Flight_DB.size(); i++) {
+					else if (c == 3) {
+						for (int i = 0; i < Flight_DB.size(); i++)
 							Flight_DB[i].checkReserve(pass);
-						}
-						if (c == 4) {
-							int k = 0, row = 0, col = 0;
-							Show_Flight_Status(Flight_DB);
-							cout << "Choose Airplane that you want to Use : ";
-							cin >> k;
-							cout << "Choose Seat that you want to Cancel.\n";
-							Flight_DB[k - 1].viewSit();
-							cout << "Row : ";
-							cin >> row;
-							cout << "Column : ";
-							cin >> col;
-							cout << "Cancelation Complete!" << endl;
-							Flight_DB[k - 1].cancelReserve(row, col, pass);
-							Flight_DB[k - 1].viewSit();
-						}
-						if (c == 5)
-							break;
 					}
-				}
-			}
-			else if (a == 3)
-				return 0;
-		}
+					else if (c == 4) {
+						int k = 0, row = 0, col = 0;
+						Show_Flight_Status(Flight_DB);
+						cout << "Choose Airplane that you want to Use : ";
+						cin >> k;
+						cout << "Choose Seat that you want to Cancel.\n";
+						Flight_DB[k - 1].viewSit();
+						cout << "Row : ";
+						cin >> row;
+						cout << "Column : ";
+						cin >> col;
+						cout << "Cancelation Complete!" << endl;
+						Flight_DB[k - 1].cancelReserve(row, col, pass);
+						Flight_DB[k - 1].viewSit();
+					}
+					else if (c == 5)
+						break;
+				}//while
+			}//adminæ∆¥“∂ß
+		}//a==2
+		else if (a == 3)
+			return 0;
 	}
 }
+
