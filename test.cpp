@@ -74,7 +74,6 @@ int main() {
 			}
 			else if (User.getName() != "admin") {
 				while (1) {
-
 					cout << "1. Register PassortNumber   2. Reservation   3. Check Reservation   4. Cancel Reservation	5. Exit\n";
 					cin >> c;
 					if (c == 1) {
@@ -88,7 +87,31 @@ int main() {
 						Show_Flight_Status(Flight_DB);
 						cout << "Choose Airplane that you want to Use : ";
 						cin >> k;
-						Flight_DB[k - 1].reservation(pass);
+						//시간 비교//
+						time_t now = time(NULL);
+						struct tm date;
+						localtime_s(&date, &now);
+						string d1 = to_string(date.tm_year + 1900);
+						string d2 = to_string(date.tm_mon + 1);
+						string d3 = to_string(date.tm_mday);
+						string da = d1 + d2 + d3;
+						int hour = date.tm_hour;
+						if (Flight_DB[k - 1].getDay() == da) {
+							char s1[20];
+							strcpy_s(s1, sizeof(s1), Flight_DB[k - 1].getAt().c_str());
+							char* dd = NULL;
+							char* ptr = strtok_s(s1, ":",&dd);
+							if ((atoi(ptr)-hour >= (1-hour)) && (atoi(ptr) - hour <= 1)) {
+								cout << "reservation no! hour error!\n";
+								break;
+							}
+							else 
+								Flight_DB[k - 1].reservation(pass);
+						}
+						else if (Flight_DB[k - 1].getDay() != da) {
+							cout << "date error! you can't reserve this flight\n";
+							break;
+						}
 					}
 					if (c == 3) {
 						for (int i = 0; i < Flight_DB.size(); i++) {

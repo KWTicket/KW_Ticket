@@ -34,7 +34,7 @@ Flight addFlight(Airplane air) {
    cout << "Input your arrival place : ";
    cin >> f;
 
-   cout << "Input your departure day : ";
+   cout << "Input your arrival day : ";
    cin >> g;
 
    cout << "Input your departure time : ";
