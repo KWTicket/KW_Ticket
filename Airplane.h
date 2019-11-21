@@ -141,7 +141,7 @@ public:
 					for (int p = 0; p < ap.getRow(); p++) {
 						for (int q = 0; q < ap.getCol(); q++) {
 							if (sit[p][q].getPass() == passenger.getPass())
-								cout << "  row : " << p << "   column : " << q << endl;
+								cout << "  row : " << p+1 << "   column : " << q+1 << endl;
 						}
 					}
 				}

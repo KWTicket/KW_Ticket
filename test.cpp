@@ -45,7 +45,6 @@ int main() {
 						int airNum;
 						cout << "Choose Airplane that you want to Check Seats : ";
 						cin >> airNum;
-						// Flight_DB[airNum-1].getAir().test();
 						Flight_DB[airNum-1].viewSit();
 						for (int a = 0; a < Guest_DB.size(); a++) {
 							for (int i = 0; i < Flight_DB[airNum-1].getAir().getRow(); i++) {
@@ -61,8 +60,8 @@ int main() {
 						int c, r;
 						cout << "Input row and column : ";
 						cin >> r >> c;
-						if (Flight_DB[airNum - 1].sit[r][c].getPass() != 0) {
-							Flight_DB[airNum - 1].sit[r][c].test();
+						if (Flight_DB[airNum - 1].sit[r-1][c-1].getPass() != 0) {
+							Flight_DB[airNum - 1].sit[r-1][c-1].test();
 						}
 						else
 							cout << "Empty Sit!" << endl;
