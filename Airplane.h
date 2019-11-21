@@ -93,8 +93,8 @@ public:
 		for (int i = 0; i < ap.getRow(); i++) {
 			for (int j = 0; j < ap.getCol(); j++) {
 				if (sit[i][j].getPass() == 0)
-					cout << "[□]";
-				else cout << "[■]";
+					cout << "[X]";
+				else cout << "[O]";
 			}
 			cout << endl;
 		}
