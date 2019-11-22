@@ -8,6 +8,9 @@ Airplane addAirplane();
 Flight addFlight(Airplane air);
 void Show_Airplane_Status(vector <Airplane> Check_air);
 void Show_Flight_Status(vector <Flight> Check_flight);
+string cur_date();
+int cur_hour();
+int com_date(Flight DB);
 
 int main() {
 
@@ -97,30 +100,25 @@ int main() {
 						Show_Flight_Status(Flight_DB);
 						cout << "Choose Airplane that you want to Use : ";
 						cin >> k;
-						//시간 비교//
-						time_t now = time(NULL);
-						struct tm date;
-						localtime_s(&date, &now);
-						string d1 = to_string(date.tm_year + 1900);
-						string d2 = to_string(date.tm_mon + 1);
-						string d3 = to_string(date.tm_mday);
-						string da = d1 + d2 + d3;
-						int hour = date.tm_hour;
-						if (Flight_DB[k - 1].getDay() == da) {
+						int a = com_date(Flight_DB[k - 1]);
+						if (a == 0) {
 							char s1[20];
-							strcpy_s(s1, sizeof(s1), Flight_DB[k - 1].getAt().c_str());
+							strcpy_s(s1, sizeof(s1), Flight_DB[k - 1].getDt().c_str());
 							char* dd = NULL;
-							char* ptr = strtok_s(s1, ":",&dd);
-							if ((atoi(ptr)-hour >= (1-hour)) && (atoi(ptr) - hour <= 1)) {
+							char* ptr = strtok_s(s1, ":", &dd);
+							if ((atoi(ptr) - cur_hour() >= (1 - cur_hour())) && (atoi(ptr) - cur_hour() <= 1)) {
 								cout << "reservation no! hour error!\n";
 								break;
 							}
-							else 
+							else
 								Flight_DB[k - 1].reservation(pass);
 						}
-						else if (Flight_DB[k - 1].getDay() != da) {
+						else if (a == 1) {
 							cout << "date error! you can't reserve this flight\n";
 							break;
+						}
+						else {
+							Flight_DB[k - 1].reservation(pass);
 						}
 					}
 					if (c == 3) {
