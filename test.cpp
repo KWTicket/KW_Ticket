@@ -35,15 +35,23 @@ int main() {
 						Airplane_DB.push_back(addAirplane());
 					else if (b == 2) {
 						int k = 0;
+						if (Airplane_DB.empty()) {
+							cout << "Airplane Empty!" << endl;
+							continue;
+						}
 						Show_Airplane_Status(Airplane_DB);
 						cout << "Choose Airplane that you want to Add Flight : ";
 						cin >> k;
 						Flight_DB.push_back(addFlight(Airplane_DB[k - 1]));
 					}
 					else if (b == 3) {
+						if (Flight_DB.empty()) {
+							cout << "Flight Empty!" << endl;
+							continue;
+						}
 						Show_Flight_Status(Flight_DB);
 						int airNum;
-						cout << "Choose Airplane that you want to Check Seats : ";
+						cout << "Choose Flight that you want to Check Seats : ";
 						cin >> airNum;
 						Flight_DB[airNum-1].viewSit();
 						int c, r;
@@ -56,7 +64,7 @@ int main() {
 							cout << "Empty Sit!" << endl;
 					}
 					else if (b == 4) {
-						Show_Flight_Status(Flight_DB);
+						cout << "Good Bye, Admin!" << endl;
 						break;
 					}
 				}
@@ -73,6 +81,10 @@ int main() {
 					}
 					else if (c == 2) {
 						int k = 0;
+						if (Flight_DB.empty()) {
+							cout << "Flight Empty!" << endl;
+							continue;
+						}
 						Show_Flight_Status(Flight_DB);
 						cout << "Choose Airplane that you want to Use : ";
 						cin >> k;
@@ -103,12 +115,21 @@ int main() {
 						}
 					}
 					if (c == 3) {
+						if (Flight_DB.empty()) {
+							cout << "Flight Empty!" << endl;
+							continue;
+						}
+						cout << pass.getName() << "'s information : " << endl;
 						for (int i = 0; i < Flight_DB.size(); i++) {
 							Flight_DB[i].checkReserve(pass);
 						}
 					}
 					if (c == 4) {
 						int k = 0, row = 0, col = 0;
+						if (Flight_DB.empty()) {
+							cout << "Flight Empty!" << endl;
+							continue;
+						}
 						Show_Flight_Status(Flight_DB);
 						cout << "Choose Airplane that you want to Use : ";
 						cin >> k;
@@ -123,6 +144,7 @@ int main() {
 						Flight_DB[k - 1].viewSit();
 					}
 					if (c == 5)
+						cout << "Good Bye," << User.getName() << '!' << endl;
 						break;
 				}
 			}

@@ -134,7 +134,6 @@ public:
 		}
 	}
 	void checkReserve(Passenger passenger) {
-		cout << passenger.getName() << "'s information : " << endl;
 		for (int i = 0; i < ap.getRow(); i++) {
 			for (int j = 0; j < ap.getCol(); j++) {
 				if (sit[i][j].getPass() == passenger.getPass()) {
@@ -146,7 +145,7 @@ public:
 					for (int p = 0; p < ap.getRow(); p++) {
 						for (int q = 0; q < ap.getCol(); q++) {
 							if (sit[p][q].getPass() == passenger.getPass())
-								cout << "  row : " << p+1 << "   column : " << q+1 << endl;
+								cout << "  row : " << p+1 << "   column : " << q+1 << "\n\n";
 						}
 					}
 				}
