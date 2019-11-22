@@ -54,14 +54,23 @@ int main() {
 						cout << "Choose Flight that you want to Check Seats : ";
 						cin >> airNum;
 						Flight_DB[airNum-1].viewSit();
-						int c, r;
-						cout << "Input row and column : ";
-						cin >> r >> c;
-						if (Flight_DB[airNum - 1].sit[r-1][c-1].getPass() != 0) {
-							Flight_DB[airNum - 1].sit[r-1][c-1].test();
+						char command;
+						while (1) {
+							cout << "If you want to check seats, input 'c', or if you want to quit, input 'q' : ";
+							cin >> command;
+							if (command == 'c') {
+								int c, r;
+								cout << "Input row and column : ";
+								cin >> r >> c;
+								if (Flight_DB[airNum - 1].sit[r - 1][c - 1].getPass() != 0) {
+									Flight_DB[airNum - 1].sit[r - 1][c - 1].test();
+								}
+								else
+									cout << "Empty Sit!" << endl;
+							}
+							if (command == 'q')
+								break;
 						}
-						else
-							cout << "Empty Sit!" << endl;
 					}
 					else if (b == 4) {
 						cout << "Good Bye, Admin!" << endl;
@@ -143,9 +152,10 @@ int main() {
 						Flight_DB[k - 1].cancelReserve(User, row, col, pass);
 						Flight_DB[k - 1].viewSit();
 					}
-					if (c == 5)
+					if (c == 5) {
 						cout << "Good Bye," << User.getName() << '!' << endl;
 						break;
+					}
 				}
 			}
 		}

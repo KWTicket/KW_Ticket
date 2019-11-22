@@ -155,7 +155,7 @@ public:
 
 	void cancelReserve(Guest user, int row, int col, Passenger passenger) {
 		cout << passenger.getName() << "'s reservation Canceling ..." << endl;
-		if (user.getName() == passenger.getName()) {
+		if (user.getName() == sit[row - 1][col - 1].getName()) {
 			Guest temp("", "", "", "", "");
 			Passenger tem(temp, 0);
 			sit[row - 1][col - 1] = tem;
