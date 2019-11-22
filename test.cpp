@@ -130,7 +130,7 @@ int main() {
 						cout << "Column : ";
 						cin >> col;
 						cout << "Cancelation Complete!" << endl;
-						Flight_DB[k - 1].cancelReserve(row, col, pass);
+						Flight_DB[k - 1].cancelReserve(User, row, col, pass);
 						Flight_DB[k - 1].viewSit();
 					}
 					if (c == 5)
