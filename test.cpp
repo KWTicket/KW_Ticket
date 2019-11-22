@@ -41,22 +41,11 @@ int main() {
 						Flight_DB.push_back(addFlight(Airplane_DB[k - 1]));
 					}
 					else if (b == 3) {
-						Show_Airplane_Status(Airplane_DB);
+						Show_Flight_Status(Flight_DB);
 						int airNum;
 						cout << "Choose Airplane that you want to Check Seats : ";
 						cin >> airNum;
 						Flight_DB[airNum-1].viewSit();
-						for (int a = 0; a < Guest_DB.size(); a++) {
-							for (int i = 0; i < Flight_DB[airNum-1].getAir().getRow(); i++) {
-								for (int j = 0; j < Flight_DB[airNum-1].getAir().getCol(); j++) {
-									if (Guest_DB[a].getName() == Flight_DB[airNum-1].sit[i][j].getName()) {
-										cout << "row : " << i << "\t" << "column" << j << endl;
-									}
-									// else if (Guest_DB[a].getName() != Flight_DB[airNum].sit[i][j].getName())
-										// cout << "Empty Sit!" << endl;
-								}
-							}
-						}
 						int c, r;
 						cout << "Input row and column : ";
 						cin >> r >> c;
