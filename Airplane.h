@@ -102,6 +102,11 @@ public:
 
 	void reservation(Passenger passenger) {
 
+		if (passenger.getPass() == 0) {
+			cout << "You should input passport number first." << endl;
+			return;
+		}
+
 		int row = 0, col = 0;
 
 		cout << "Choose Seat\n";
