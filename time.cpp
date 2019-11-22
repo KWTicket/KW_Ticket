@@ -52,7 +52,20 @@ int com_date(Flight DB) {
 				return 2/*예약 O, 아직 안 지난거,무조건 되는거*/;
 			}
 			else if (cur_d == cur_d) {
-				return 0;//날짜 현재날짜랑 동일
+				int ch = cur_hour();
+				char s1[20];
+				strcpy_s(s1, sizeof(s1), DB.getDt().c_str());
+				char* dd = NULL;
+				char* ptr = strtok_s(s1, ":", &dd);
+				if (atoi(ptr) > ch) {
+					if (atoi(ptr) - ch > 2)
+						return 0;
+					else if (atoi(ptr) - ch <= 2)
+						return 1;
+				}
+				else if (atoi(ptr) < ch) {
+					return 1;
+				}
 			}
 		}
 	}
