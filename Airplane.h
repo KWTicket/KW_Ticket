@@ -153,14 +153,18 @@ public:
 		}
 	}
 
-	void cancelReserve(Guest user, int row, int col, Passenger passenger) {
+	void cancelReserve(Passenger passenger) {
+		int i, j;
 		cout << passenger.getName() << "'s reservation Canceling ..." << endl;
-		if (user.getName() == sit[row - 1][col - 1].getName()) {
-			Guest temp("", "", "", "", "");
-			Passenger tem(temp, 0);
-			sit[row - 1][col - 1] = tem;
+		for (i = 0; i < ap.getRow(); i++) {
+			for (j = 0; j < ap.getCol(); j++) {
+				if (passenger.getID() == sit[i][j].getID()) {
+					Guest temp("", "", "", "", "");
+					Passenger tem(temp, 0);
+					sit[i][j] = tem;
+				}
+			}
 		}
-		else
-			cout << "Cancel denied!" << endl << "Login again!" << endl;
+		cout << "Cancel Complete" << endl;
 	}
 };

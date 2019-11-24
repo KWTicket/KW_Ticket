@@ -26,12 +26,24 @@ Airplane addAirplane() {
 }
 
 Flight addFlight(Airplane air) {
-   string e, f, g, h, i;
+	string e, f, g, h, i;
 
-   cout << "Input your departure place : ";
-   cin >> e;
+	cout << "Choose your departure place : \n";
+	cout << " - INCHEON       - GIMPO   - JEJU     - HANEDA      - NARITA \n";
+	cout << " - KANSAI        - TAIPEI  - BEIJING  - SHANGHAI    - GUANGZHOU \n";
+	cout << " - HONGKONG      - MACAU   - DANANG   - CEBU        - BORACAY \n";
+	cout << " - KOTAKINABALU  - LA      - MIAMI    - WASHINGTON  - TORONTO \n";
+	cout << " - VANCOUVER     - LONDON  - PARIS    - BERLIN      - WEIN \n";
+	cout << " - BUDAPEST      - PRAHA \n";
+	cin >> e;
 
-   cout << "Input your arrival place : ";
+	cout << "Choose your departure place : \n";
+	cout << " - INCHEON       - GIMPO   - JEJU     - HANEDA      - NARITA \n";
+	cout << " - KANSAI        - TAIPEI  - BEIJING  - SHANGHAI    - GUANGZHOU \n";
+	cout << " - HONGKONG      - MACAU   - DANANG   - CEBU        - BORACAY \n";
+	cout << " - KOTAKINABALU  - LA      - MIAMI    - WASHINGTON  - TORONTO \n";
+	cout << " - VANCOUVER     - LONDON  - PARIS    - BERLIN      - WEIN \n";
+	cout << " - BUDAPEST      - PRAHA \n";
    cin >> f;
 
    cout << "Input your arrival day : ";

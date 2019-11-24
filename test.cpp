@@ -16,6 +16,7 @@ int main() {
 
 	vector<Airplane> Airplane_DB;
 	vector<Flight> Flight_DB;
+	vector<Flight> Search_Flight_DB;
 	vector<Guest> Guest_DB;
 	Guest Admin("admin", "1q2w3e4r!", "admin", "admin", "admin");
 	Guest_DB.push_back(Admin);
@@ -99,25 +100,49 @@ int main() {
 						pass = Passenger(User, passNum);
 					}
 					else if (c == 2) {
+						string dep, arr;
 						int k = 0;
-						if (Flight_DB.empty()) {
-							cout << "Flight Empty!" << endl;
+						cout << "Choose your departure place : \n";
+						cout << " - INCHEON       - GIMPO   - JEJU     - HANEDA      - NARITA \n";
+						cout << " - KANSAI        - TAIPEI  - BEIJING  - SHANGHAI    - GUANGZHOU \n";
+						cout << " - HONGKONG      - MACAU   - DANANG   - CEBU        - BORACAY \n";
+						cout << " - KOTAKINABALU  - LA      - MIAMI    - WASHINGTON  - TORONTO \n";
+						cout << " - VANCOUVER     - LONDON  - PARIS    - BERLIN      - WEIN \n";
+						cout << " - BUDAPEST      - PRAHA \n";
+						cin >> dep;
+						cout << "Choose your arrival place : \n";
+						cout << " - INCHEON       - GIMPO   - JEJU     - HANEDA      - NARITA \n";
+						cout << " - KANSAI        - TAIPEI  - BEIJING  - SHANGHAI    - GUANGZHOU \n";
+						cout << " - HONGKONG      - MACAU   - DANANG   - CEBU        - BORACAY \n";
+						cout << " - KOTAKINABALU  - LA      - MIAMI    - WASHINGTON  - TORONTO \n";
+						cout << " - VANCOUVER     - LONDON  - PARIS    - BERLIN      - WEIN \n";
+						cout << " - BUDAPEST      - PRAHA \n";
+						cin >> arr;
+						for (int i = 0; i < Flight_DB.size(); i++) {
+							if (Flight_DB[i].getDep() == dep && Flight_DB[i].getArr() == arr)
+								Search_Flight_DB.push_back(Flight_DB[i]);
+						}
+						if (Search_Flight_DB.empty()) {
+							cout << "No Flight Data." << endl;
 							continue;
 						}
-						Show_Flight_Status(Flight_DB);
+						Show_Flight_Status(Search_Flight_DB);
+
 						cout << "Choose Airplane that you want to Use : ";
 						cin >> k;
-						int a = com_date(Flight_DB[k - 1]);
-						if (a == 0) {
-								Flight_DB[k - 1].reservation(pass);
+
+						int d = com_date(Search_Flight_DB[k - 1]);
+						if (d == 0) {
+							Search_Flight_DB[k - 1].reservation(pass);
 						}
-						else if (a == 1) {
+						else if (d == 1) {
 							cout << "date error! you can't reserve this flight\n";
 							continue;
 						}
 						else {
-							Flight_DB[k - 1].reservation(pass);
+							Search_Flight_DB[k - 1].reservation(pass);
 						}
+						Search_Flight_DB.clear();
 					}
 					if (c == 3) {
 						if (Flight_DB.empty()) {
@@ -130,23 +155,26 @@ int main() {
 						}
 					}
 					if (c == 4) {
-						int k = 0, row = 0, col = 0;
-						if (Flight_DB.empty()) {
-							cout << "Flight Empty!" << endl;
+						int i = 0, k = 0, row = 0, col = 0;
+						for (i = 0; i < Flight_DB.size(); i++) {
+							for (row = 0; row < Flight_DB[i].getAir().getRow(); row++) {
+								for (col = 0; col < Flight_DB[i].getAir().getCol(); col++) {
+									if (Flight_DB[i].sit[row][col].getID() == pass.getID())
+										Search_Flight_DB.push_back(Flight_DB[i]);
+								}
+							}
+							Search_Flight_DB[i].checkReserve(pass);
+						}
+						if (Search_Flight_DB.empty()) {
+							cout << "No reserve data!" << endl;
 							continue;
 						}
-						Show_Flight_Status(Flight_DB);
-						cout << "Choose Airplane that you want to Use : ";
+
+						cout << "Choose Airplane that you want to cancel : ";
 						cin >> k;
-						cout << "Choose Seat that you want to Cancel.\n";
-						Flight_DB[k - 1].viewSit();
-						cout << "Row : ";
-						cin >> row;
-						cout << "Column : ";
-						cin >> col;
-						cout << "Cancelation Complete!" << endl;
-						Flight_DB[k - 1].cancelReserve(User, row, col, pass);
-						Flight_DB[k - 1].viewSit();
+						Search_Flight_DB[k - 1].cancelReserve(pass);
+						Search_Flight_DB[k - 1].viewSit();
+						Search_Flight_DB.clear();
 					}
 					if (c == 5) {
 						cout << "Good Bye," << User.getName() << '!' << endl;
