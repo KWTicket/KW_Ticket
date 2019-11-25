@@ -8,13 +8,14 @@ Guest login(vector<Guest> DB) {
 	cout << "" << endl;
 
 	while (1) {
-		cout << "[ Login ] ============================================" << endl;
-		cout << "∥                                                  ∥" << endl;
-		cout << "∥    ★ Please enter the correct information ★    ∥" << endl;
-		cout << "∥                                                  ∥" << endl;
-		cout << "∥ ★ If you want to go previous stage, press q. ★ ∥" << endl;
-		cout << "∥                                                  ∥" << endl;
-		cout << "=====================================================" << endl;
+		cout << "" << endl;
+		cout << " [ Login ] ============================================" << endl;
+		cout << " ∥                                                  ∥" << endl;
+		cout << " ∥    ★ Please enter the correct information ★    ∥" << endl;
+		cout << " ∥                                                  ∥" << endl;
+		cout << " ∥ ★ If you want to go previous stage, press q. ★ ∥" << endl;
+		cout << " ∥                                                  ∥" << endl;
+		cout << " ======================================================" << endl;
 		cout << "" << endl;
 		cout << "   ID : ";
 		cin >> a;
@@ -28,11 +29,10 @@ Guest login(vector<Guest> DB) {
 					cin >> b;
 
 					if (DB[i].getPW() == b) {
+						system("cls");
 						cout << "" << endl;
-						cout << "===============================================" << endl;
-						cout << "∥             Hello, " << DB[i].getName() << " > 0<!            ∥" << endl;
-						cout << "∥♡  Have a nice trip with KW-TICKET :-)  ♡∥" << endl;
-						cout << "===============================================" << endl;
+						cout << "          ♡  Hello, " << DB[i].getName() << " > 0<!  ♡" << endl;
+						cout << "  ♡  Have a nice trip with KW-TICKET :-)  ♡ " << endl;
 						cout << "" << endl;
 						Sleep(2000);
 						return DB[i];
