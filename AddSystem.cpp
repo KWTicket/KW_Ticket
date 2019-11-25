@@ -8,6 +8,8 @@ Airplane addAirplane() {
 	string a, b;
 	int c, d;
 	cout << "" << endl;
+	cout << "   [[  Please fill out the flight information.  ]]" << endl;
+	cout << "" << endl;
 	cout << "   Airplane name : ";
 	cin >> a;
 
@@ -77,29 +79,40 @@ Flight addFlight(Airplane air) {
 	cin >> i;
 
 	Flight flight(air, e, f, g, h, i);
+	system("cls");
 	flight.test();
 	flight.viewSit();
+	cout << "" << endl;
 	cout << "   ☆ Flights are added successfully ☆" << endl;
-	Sleep(4000);
+	Sleep(5000);
 	return flight;
 }
 
 void Show_Airplane_Status(vector <Airplane> Check_air) {
 	for (int a = 0; a < Check_air.size(); a++) {
-		cout << a + 1 << "Airplane name : " << Check_air[a].getAp() << endl;
-		cout << "  Company : " << Check_air[a].getCom() << endl;
-		cout << "  Size : row " << Check_air[a].getRow() << "   column " << Check_air[a].getCol() << endl;
+		cout << "" << endl;
+		cout << " [[  List of planes  ]]" << endl;
+		cout << "" << endl;
+		cout << " (" << a + 1 << ")" << " Airplane name : " << Check_air[a].getAp() << endl;
+		cout << "     Company : " << Check_air[a].getCom() << endl;
+		cout << "     Size : row " << Check_air[a].getRow() << "   column " << Check_air[a].getCol() << endl;
+		cout << "" << endl;
 	}
 }
 void Show_Flight_Status(vector <Flight> Check_flight) {
 	for (int a = 0; a < Check_flight.size(); a++) {
-		cout << a + 1 << "Airplane name : " << Check_flight[a].getAir().getAp() << endl;
-		cout << "  Company : " << Check_flight[a].getAir().getCom() << endl;
-		cout << "  Size : row " << Check_flight[a].getAir().getRow() << "   column " << Check_flight[a].getAir().getCol() << endl;
-		cout << "  departure airport : " << Check_flight[a].getDep() << endl;
-		cout << "  arrival airport : " << Check_flight[a].getArr() << endl;
-		cout << "  departure date : " << Check_flight[a].getDay() << endl;
-		cout << "  departure time : " << Check_flight[a].getDt() << endl;
-		cout << "  arrival time : " << Check_flight[a].getAt() << endl;
+		cout << "" << endl;
+		cout << " [[  List of flight plans  ]]" << endl;
+		cout << "" << endl;
+		cout << " (" << a + 1 << ")"<< " Airplane name : " << Check_flight[a].getAir().getAp() << endl;
+		cout << "     Company : " << Check_flight[a].getAir().getCom() << endl;
+		cout << "     Size : row " << Check_flight[a].getAir().getRow() << "   column " << Check_flight[a].getAir().getCol() << endl;
+		cout << "" << endl;
+		cout << "     Departure airport : " << Check_flight[a].getDep() << endl;
+		cout << "     Arrival airport : " << Check_flight[a].getArr() << endl;
+		cout << "     Departure date : " << Check_flight[a].getDay() << endl;
+		cout << "     Departure time : " << Check_flight[a].getDt() << endl;
+		cout << "     Arrival time : " << Check_flight[a].getAt() << endl;
+		cout << "" << endl;
 	}
 }
