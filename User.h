@@ -4,6 +4,9 @@
 #include<string>
 #include<iostream>
 #include<vector>
+#include<time.h>
+#include<ctime>
+#include<cstring>
 
 using namespace std;
 
@@ -16,7 +19,7 @@ private:
 	string address;
 
 public:
-	Guest(){
+	Guest() {
 		ID = " ";
 		PW = " ";
 		name = " ";
@@ -47,10 +50,10 @@ public:
 	}
 	void test() {
 		cout << "ID : " << ID << '\n' <<
-				"PW : " << PW << '\n' <<
-				"name : " << name << '\n' <<
-				"register number : " << regNum << '\n' <<
-				"address : " << address << endl;
+			"PW : " << PW << '\n' <<
+			"name : " << name << '\n' <<
+			"register number : " << regNum << '\n' <<
+			"address : " << address << endl;
 	}
 };
 
@@ -58,10 +61,10 @@ class Passenger : public Guest {
 private:
 	int passNum;
 public:
-	Passenger(){
+	Passenger() {
 		passNum = 0;
 	}
-	Passenger(Guest g, int passNum) : Guest(g.getID(), g.getPW(), g.getName(), g.getReg(),g.getAdd()) {
+	Passenger(Guest g, int passNum) : Guest(g.getID(), g.getPW(), g.getName(), g.getReg(), g.getAdd()) {
 		this->passNum = passNum;
 	}
 	int getPass() {
