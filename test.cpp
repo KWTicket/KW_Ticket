@@ -33,17 +33,18 @@ int main() {
 				Flight_DB.erase(Flight_DB.begin() + i);
 			}
 		}
-		cout << "☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆" << endl;
-		cout << "☆ *       *         *   *         *     *      * ☆" << endl;
-		cout << "☆  *    *     *      *      *       *     *     *☆" << endl;
-		cout << "☆*   *   *  !! WELCOME TO KW-TICKET !!  *   *   *☆" << endl;
-		cout << "☆*  *     *        *       *    *    *   *     * ☆" << endl;
-		cout << "☆*     *   *     *         *      *       *     *☆" << endl;
-		cout << "☆  *   *      *     *   *      *     *   *      *☆" << endl;
-		cout << "☆ *  * ⓒ 2019. KW-TICKET All rights reserved. * ☆" << endl;
-		cout << "☆*   *    *       *       *      *       *     * ☆" << endl;
-		cout << "☆      *       *     *        *        *         ☆" << endl;
-		cout << "☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆" << endl;
+		cout << "" << endl;
+		cout << " ☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆" << endl;
+		cout << " ☆ *       *         *   *         *     *      * ☆" << endl;
+		cout << " ☆  *    *     *      *      *       *     *     *☆" << endl;
+		cout << " ☆*   *   *  !! WELCOME TO KW-TICKET !!  *   *   *☆" << endl;
+		cout << " ☆*  *     *        *       *    *    *   *     * ☆" << endl;
+		cout << " ☆*     *   *     *         *      *       *     *☆" << endl;
+		cout << " ☆  *   *      *     *   *      *     *   *      *☆" << endl;
+		cout << " ☆ *  * ⓒ 2019. KW-TICKET All rights reserved. * ☆" << endl;
+		cout << " ☆*   *    *       *       *      *       *     * ☆" << endl;
+		cout << " ☆      *       *     *        *        *         ☆" << endl;
+		cout << " ☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆" << endl;
 		cout << "" << endl;
 		cout << "   1. Join" << endl;
 		cout << "   2. Login" << endl;
@@ -71,44 +72,64 @@ int main() {
 					else if (b == 2) {
 						int k = 0;
 						if (Airplane_DB.empty()) {
-							cout << "Airplane Empty!" << endl;
+							cout << "" << endl;
+							cout << "   !!!! There's no plane !!!!\n ";
+							cout << "   Please add the plane :-(" << endl;
+							Sleep(2000);
 							continue;
 						}
+						system("cls");
 						Show_Airplane_Status(Airplane_DB);
-						cout << "Choose Airplane that you want to Add Flight : ";
+						cout << " Choose Airplane that you want to Add Flight : ";
 						cin >> k;
 						Flight_DB.push_back(addFlight(Airplane_DB[k - 1]));
 					}
 					else if (b == 3) {
 						if (Flight_DB.empty()) {
-							cout << "Flight Empty!" << endl;
+							cout << "" << endl;
+							cout << "   !!!! There's no flight plan !!!!\n ";
+							cout << "   Please add the flight plan :-(" << endl;
 							continue;
 						}
+						system("cls");
 						Show_Flight_Status(Flight_DB);
+						cout << "" << endl;
 						int airNum;
-						cout << "Choose Flight that you want to Check Seats : ";
+						cout << "   Choose Flight that you want to Check Seats : ";
 						cin >> airNum;
+						cout << "" << endl;
 						Flight_DB[airNum - 1].viewSit();
 						char command;
 						while (1) {
-							cout << "If you want to check seats, input 'c', or if you want to quit, input 'q' : ";
+							cout << "" << endl;
+							cout << "   If you want to check seats, input 'c', or if you want to quit, input 'q' : ";
 							cin >> command;
 							if (command == 'c') {
 								int c, r;
-								cout << "Input row and column : ";
-								cin >> r >> c;
+								cout << "" << endl;
+								cout << "   Please input row : ";
+								cin >> r;
+								cout << "   Please input column : ";
+								cin >> c;
+								cout << "" << endl;
 								if (Flight_DB[airNum - 1].sit[r - 1][c - 1].getPass() != 0) {
 									Flight_DB[airNum - 1].sit[r - 1][c - 1].test();
 								}
-								else
-									cout << "Empty Sit!" << endl;
+								else {
+									cout << "" << endl;
+									cout << "   !!!! This seat is empty !!!!\n ";
+									cout << "   Please select again. :-(" << endl;
+									cout << "" << endl;
+								}
 							}
 							if (command == 'q')
 								break;
 						}
 					}
 					else if (b == 4) {
-						cout << "Good Bye, Admin!" << endl;
+						cout << "" << endl;
+						cout << "   Good Bye, Admin!" << endl;
+						cout << "" << endl;
 						break;
 					}
 				}
@@ -253,14 +274,30 @@ int main() {
 						Search_Flight_DB.clear();
 					}
 					if (c == 5) {
-						cout << "Good Bye," << User.getName() << '!' << endl;
+						cout << "" << endl;
+						cout << "   Good Bye," << User.getName() << '!' << endl;
+						cout << "" << endl;
 						break;
 					}
 				}
 			}
 		}
 		else if (a == 3) {
-			cout << "Finish Program!" << endl;
+		system("cls");
+		cout << "" << endl;
+		cout << " ☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆" << endl;
+		cout << " ☆ *       *         *   *         *     *      * ☆" << endl;
+		cout << " ☆  *    *     *      *      *       *     *     *☆" << endl;
+		cout << " ☆*   *   *     * !!! GOODBYE !!! *   *    * *   *☆" << endl;
+		cout << " ☆*  *     *        *       *    *    *   *     * ☆" << endl;
+		cout << " ☆*     *   *     *         *      *       *     *☆" << endl;
+		cout << " ☆  *   *      *     *   *      *     *   *      *☆" << endl;
+		cout << " ☆ *  * ⓒ 2019. KW-TICKET All rights reserved. * ☆" << endl;
+		cout << " ☆*   *    *       *       *      *       *     * ☆" << endl;
+		cout << " ☆      *       *     *        *        *         ☆" << endl;
+		cout << " ☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆" << endl;
+		cout << "" << endl;
+		Sleep(2000);
 			return 0;
 		}
 	}
