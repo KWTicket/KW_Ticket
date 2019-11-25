@@ -67,7 +67,7 @@ Flight addFlight(Airplane air) {
 	cin >> f;
 	cout << "" << endl;
 
-	cout << "   Input Airplane's departure day : "
+	cout << "   Input Airplane's departure day : ";
 	cin >> g;
 
 	cout << "   Input Airplane's departure time : ";
