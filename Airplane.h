@@ -8,7 +8,7 @@ private:
 	int row;
 	int col;
 public:
-	Airplane(){}
+	Airplane() {}
 	Airplane(string apName, string comName, int row, int col) {
 		this->apName = apName;
 		this->comName = comName;
@@ -29,25 +29,31 @@ public:
 		return col;
 	}
 	void test() {
-		cout << '\n' << "airplane name : " << apName << '\n' <<
-				"company name : " << comName << '\n' <<
-				"row : " << row << '\n' <<
-				"column : " << col << endl;
+		cout << "" << endl;
+		cout << "=========================================" << endl;
+		cout << "" << endl;
+		cout << "  !! Please check plane information !!  " << endl;
+		cout << '\n' << "   airplane name : " << apName << '\n' <<
+			"   company name : " << comName << '\n' <<
+			"   row : " << row << '\n' <<
+			"   column : " << col << endl;
+		cout << "" << endl;
+		cout << "=========================================" << endl;
 	}
 };
 
 
-class Flight{
+class Flight {
 private:
 	Airplane ap;
 	string departure;
 	string arrival;
 	string day;
 	string depTime;
-	string arrTime;	
+	string arrTime;
 public:
 	Passenger** sit;
-	Flight(){}
+	Flight() {}
 	Flight(Airplane ap, string dep, string arr, string day, string dt, string at) {
 		this->ap = ap;
 		this->departure = dep;
@@ -56,7 +62,7 @@ public:
 		this->depTime = dt;
 		this->arrTime = at;
 
-		sit = new Passenger*[getAir().getRow()];			// 2차원
+		sit = new Passenger *[getAir().getRow()];			// 2차원
 		for (int i = 0; i < getAir().getRow(); i++) {		// 동적배열
 			sit[i] = new Passenger[getAir().getCol()];	// 생성문
 		}
@@ -83,18 +89,21 @@ public:
 	}
 	void test() {
 		ap.test();
-		cout << "departure : " << departure << '\n' <<
-				"arrival : " << arrival << '\n' <<
-				"day : " << day << '\n' <<
-				"depTime : " << depTime << '\n' <<
-				"arrTime : " << arrTime << endl;
+		cout << "" << endl;
+		cout << "   departure : " << departure << '\n' <<
+			"   arrival : " << arrival << '\n' <<
+			"   day : " << day << '\n' <<
+			"   depTime : " << depTime << '\n' <<
+			"   arrTime : " << arrTime << endl;
+		cout << "" << endl;
 	}
-	void viewSit(){
+	void viewSit() {
 		for (int i = 0; i < ap.getRow(); i++) {
+			cout << "   ";
 			for (int j = 0; j < ap.getCol(); j++) {
 				if (sit[i][j].getPass() == 0)
-					cout << "[□]";
-				else cout << "[■]";
+					cout << "[X]";
+				else cout << "[O]";
 			}
 			cout << endl;
 		}
@@ -102,40 +111,69 @@ public:
 
 	void reservation(Passenger passenger) {
 
+		if (passenger.getPass() == 0) {
+			cout << "You should input passport number first." << endl;
+			return;
+		}
+
 		int row = 0, col = 0;
 
-		cout << "좌석을 선택하세요" << endl;
+		cout << "Choose Seat\n";
 		viewSit();
-		cout << "행 : ";
+		cout << "Row : ";
 		cin >> row;
-		cout << "열 : ";
+		cout << "Column : ";
 		cin >> col;
 
 		if (sit[row - 1][col - 1].getPass() != 0)
-			cout << "이미 선택된 좌석입니다." << endl;
+			cout << "This seat is already selected." << endl;
 		else {
 			for (int i = 0; i < ap.getRow(); i++) {
 				for (int j = 0; j < ap.getCol(); j++) {
 					if (sit[i][j].getPass() == passenger.getPass()) {
-						cout << "이미 이 비행기에 예약 되어 있습니다." << endl;
-						cout << "다시 예약 하시려면 기존 예약을 취소해주세요." << endl;
+						cout << "You already made a reservation on this airplane." << endl;
+						cout << "If you want to book again, please cancel a reservation that you already made." << endl;
 						return;
 					}
 				}
 			}
 			sit[row - 1][col - 1] = passenger;
-			cout << "예약이 완료되었습니다." << endl;
+			cout << "Reservation Complete." << endl;
 			viewSit();
-		}		
+		}
 	}
 	void checkReserve(Passenger passenger) {
-		cout << passenger.getName() << "님의 예약 정보입니다." << endl;
 		for (int i = 0; i < ap.getRow(); i++) {
 			for (int j = 0; j < ap.getCol(); j++) {
 				if (sit[i][j].getPass() == passenger.getPass()) {
-					test(); // 저희가 출력을 어떻게 할지에 따라서 달라질 예정입니다.
+					cout << "  Departure place : " << departure << endl;
+					cout << "  Arrival place : " << arrival << endl;
+					cout << "  Departure date " << day << endl;
+					cout << "  Departure time : " << depTime << endl;
+					cout << "  Arrival time : " << arrTime << endl;
+					for (int p = 0; p < ap.getRow(); p++) {
+						for (int q = 0; q < ap.getCol(); q++) {
+							if (sit[p][q].getPass() == passenger.getPass())
+								cout << "  row : " << p + 1 << "   column : " << q + 1 << "\n\n";
+						}
+					}
 				}
 			}
 		}
+	}
+
+	void cancelReserve(Passenger passenger) {
+		int i, j;
+		cout << passenger.getName() << "'s reservation Canceling ..." << endl;
+		for (i = 0; i < ap.getRow(); i++) {
+			for (j = 0; j < ap.getCol(); j++) {
+				if (passenger.getID() == sit[i][j].getID()) {
+					Guest temp("", "", "", "", "");
+					Passenger tem(temp, 0);
+					sit[i][j] = tem;
+				}
+			}
+		}
+		cout << "Cancel Complete" << endl;
 	}
 };
