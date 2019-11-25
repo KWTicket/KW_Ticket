@@ -1,21 +1,76 @@
 #include "User.h"
-#include <vector>
+#include <windows.h>
 
-Guest join()
+int checkid(vector<Guest> DB, string id) {
+	for (int i = 0; i < DB.size(); i++) {
+		if (DB[i].getID() == id) {
+			return 1;
+		}
+	}
+	return 2;
+}
+
+bool is_digit(string rn) {
+	return atoi(rn.c_str()) != 0 || rn.compare("0") == 0;
+}
+
+int checkrn(string rn) {
+	if (rn.size() != 13 || (!is_digit(rn)))
+		return 1;
+}
+
+Guest join(vector<Guest> DB)
 {
 	string na, id, pw, rn, ad;
-	cout << "-----------È¸¿ø°¡ÀÔ-----------" << endl;
-	cout << "ÀÌ¸§À» ÀÔ·ÂÇØÁÖ¼¼¿ä: ";
+	system("cls");
+	cout << "" << endl;
+	cout << "[ Join ] ============================================" << endl;
+	cout << "âˆ¥                                                  âˆ¥" << endl;
+	cout << "âˆ¥    â˜… Please enter the correct information â˜…    âˆ¥" << endl;
+	cout << "âˆ¥                                                  âˆ¥" << endl;
+	cout << "âˆ¥     â˜… When you withdraw from membership, â˜…     âˆ¥" << endl;
+	cout << "âˆ¥     â˜… the information will be discarded â˜…      âˆ¥" << endl;
+	cout << "âˆ¥                                                  âˆ¥" << endl;
+	cout << "=====================================================" << endl;
+	cout << "" << endl;
+
+	cout << "   Name : ";
 	cin >> na;
-	cout << "¾ÆÀÌµð¸¦ ÀÔ·ÂÇØÁÖ¼¼¿ä: ";
+	cout << "   ID : ";
 	cin >> id;
-	cout << "ºñ¹Ð¹øÈ£¸¦ ÀÔ·ÂÇØÁÖ¼¼¿ä: ";
+	int cid = checkid(DB, id);
+	while (cid == 1) {
+		cout << "" << endl;
+		cout << "   !!!! ID is already existed !!!!\n ";
+		cout << "   Please input another ID :-(" << endl;
+		cout << "" << endl;
+		cout << "   ID : ";
+		cin >> id;
+		cid = checkid(DB, id);
+	}
+	cout << "   Password : ";
 	cin >> pw;
-	cout << "ÁÖ¹Î¹øÈ£¸¦ ÀÔ·ÂÇØÁÖ¼¼¿ä: ";
+	cout << "   Resident Registration Number(Except '-') : ";
 	cin >> rn;
-	cout << "ÁÖ¼Ò¸¦ ÀÔ·ÂÇØÁÖ¼¼¿ä: ";
+	int crn = checkrn(rn);
+	while (crn == 1) {
+		cout << "" << endl;
+		cout << "   !!!! It's an abnormal formation !!!!\n";
+		cout << "   Please input Resident Registration Number again :-(" << endl;
+		cout << "" << endl;
+		cout << "   Resident Registration Number(Except '-') : ";
+		cin >> rn;
+		crn = checkrn(rn);
+	}
+	cout << "   Address : ";
 	cin >> ad;
-	cout << "°¡ÀÔÀÌ ¿Ï·áµÇ¾ú½À´Ï´Ù." << endl;
+	cout << "" << endl;
+	cout << "              â™¡ Congratulations !! â™¡" << endl;
+	cout << "     â™¡ Your membership has been completed â™¡" << endl;
+	cout << "â™¡ Have a comfortable and happy trip with KW-TICKET â™¡" << endl;
+	cout << "" << endl;
 	Guest g(id, pw, na, rn, ad);
+	Sleep(3000);
+	system("cls");
 	return g;
 }
