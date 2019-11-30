@@ -33,6 +33,7 @@ int main() {
 				Flight_DB.erase(Flight_DB.begin() + i);
 			}
 		}
+		system("cls");
 		cout << "" << endl;
 		cout << " ☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆" << endl;
 		cout << " ☆ *       *         *   *         *     *      * ☆" << endl;
@@ -130,6 +131,7 @@ int main() {
 						cout << "" << endl;
 						cout << "   Good Bye, Admin!" << endl;
 						cout << "" << endl;
+						Sleep(3000);
 						break;
 					}
 				}
@@ -216,16 +218,18 @@ int main() {
 								Search_Flight_DB.push_back(Flight_DB[i]);
 						}
 						if (Search_Flight_DB.empty()) {
+							system("cls");
 							cout << "" << endl;
 							cout << "   !!!! There are no flights !!!!\n";
 							cout << "   Sorry. Please search for another flight. :-(" << endl;
 							Sleep(2000);
 							continue;
 						}
+						system("cls");
 						Show_Flight_Status(Search_Flight_DB);
 
 						cout << "" << endl;
-						cout << "   Choose Airplane that you want to Use : ";
+						cout << "   Please select a flight to board : ";
 						cin >> k;
 
 						int d = com_date(Search_Flight_DB[k - 1]);
@@ -233,7 +237,11 @@ int main() {
 							Search_Flight_DB[k - 1].reservation(pass);
 						}
 						else if (d == 1) {
-							cout << "date error! you can't reserve this flight\n";
+							system("cls");
+							cout << "" << endl;
+							cout << "   !!!! You cannot book a flight on that date !!!!\n";
+							cout << "   Sorry. Please select a different date. :-(" << endl;
+							Sleep(2000);
 							continue;
 						}
 						else {
@@ -243,10 +251,15 @@ int main() {
 					}
 					if (c == 3) {
 						if (Flight_DB.empty()) {
-							cout << "Flight Empty!" << endl;
+							system("cls");
+							cout << "" << endl;
+							cout << "   !!!! There is no flight you have reserved !!!!\n";
+							cout << "   Sorry. Please make a reservation first. :-(" << endl;
+							Sleep(2000);
 							continue;
 						}
-						cout << pass.getName() << "'s information : " << endl;
+						cout << "" << endl;
+						cout << "   " <<pass.getName() << "'s flight plan : " << endl;
 						for (int i = 0; i < Flight_DB.size(); i++) {
 							Flight_DB[i].checkReserve(pass);
 						}
@@ -263,11 +276,13 @@ int main() {
 							Search_Flight_DB[i].checkReserve(pass);
 						}
 						if (Search_Flight_DB.empty()) {
-							cout << "No reserve data!" << endl;
+							cout << "   No reserve data!" << endl;
 							continue;
 						}
 
-						cout << "Choose Airplane that you want to cancel : ";
+						cout << "" << endl;
+						cout << "   Choose Airplane that you want to cancel : " << endl;
+						cout << "" << endl;
 						cin >> k;
 						Search_Flight_DB[k - 1].cancelReserve(pass);
 						Search_Flight_DB[k - 1].viewSit();
@@ -283,21 +298,21 @@ int main() {
 			}
 		}
 		else if (a == 3) {
-		system("cls");
-		cout << "" << endl;
-		cout << " ☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆" << endl;
-		cout << " ☆ *       *         *   *         *     *      * ☆" << endl;
-		cout << " ☆  *    *     *      *      *       *     *     *☆" << endl;
-		cout << " ☆*   *   *     * !!! GOODBYE !!! *   *    * *   *☆" << endl;
-		cout << " ☆*  *     *        *       *    *    *   *     * ☆" << endl;
-		cout << " ☆*     *   *     *         *      *       *     *☆" << endl;
-		cout << " ☆  *   *      *     *   *      *     *   *      *☆" << endl;
-		cout << " ☆ *  * ⓒ 2019. KW-TICKET All rights reserved. * ☆" << endl;
-		cout << " ☆*   *    *       *       *      *       *     * ☆" << endl;
-		cout << " ☆      *       *     *        *        *         ☆" << endl;
-		cout << " ☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆" << endl;
-		cout << "" << endl;
-		Sleep(2000);
+			system("cls");
+			cout << "" << endl;
+			cout << " ☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆" << endl;
+			cout << " ☆ *       *         *   *         *     *      * ☆" << endl;
+			cout << " ☆  *    *     *      *      *       *     *     *☆" << endl;
+			cout << " ☆*   *   *     * !!! GOODBYE !!! *   *    * *   *☆" << endl;
+			cout << " ☆*  *     *        *       *    *    *   *     * ☆" << endl;
+			cout << " ☆*     *   *     *         *      *       *     *☆" << endl;
+			cout << " ☆  *   *      *     *   *      *     *   *      *☆" << endl;
+			cout << " ☆ *  * ⓒ 2019. KW-TICKET All rights reserved. * ☆" << endl;
+			cout << " ☆*   *    *       *       *      *       *     * ☆" << endl;
+			cout << " ☆      *       *     *        *        *         ☆" << endl;
+			cout << " ☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆" << endl;
+			cout << "" << endl;
+			Sleep(2000);
 			return 0;
 		}
 	}
