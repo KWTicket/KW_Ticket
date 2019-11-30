@@ -29,7 +29,7 @@ Guest login(vector<Guest> DB) {
 					cin >> b;
 
 					if (DB[i].getPW() == b) {
-						system("cls");
+						cout << "" << endl;
 						cout << "" << endl;
 						cout << "          ♡  Hello, " << DB[i].getName() << " > 0<!  ♡" << endl;
 						cout << "  ♡  Have a nice trip with KW-TICKET :-)  ♡ " << endl;
