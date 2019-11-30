@@ -49,11 +49,12 @@ public:
 		return address;
 	}
 	void test() {
-		cout << "ID : " << ID << '\n' <<
-			"PW : " << PW << '\n' <<
-			"name : " << name << '\n' <<
-			"register number : " << regNum << '\n' <<
-			"address : " << address << endl;
+		cout << "" << endl;
+		cout << "   ID : " << ID << '\n' <<
+			"   PW : " << PW << '\n' <<
+			"   name : " << name << '\n' <<
+			"   register number : " << regNum << '\n' <<
+			"   address : " << address << endl;
 	}
 };
 
@@ -72,6 +73,6 @@ public:
 	}
 	void test() {
 		Guest::test();
-		cout << "passport number : " << passNum << endl;
+		cout << "   passport number : " << passNum << endl;
 	}
 };
