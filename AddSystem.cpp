@@ -89,20 +89,21 @@ Flight addFlight(Airplane air) {
 }
 
 void Show_Airplane_Status(vector <Airplane> Check_air) {
+	cout << "" << endl;
+	cout << " [[  List of planes  ]]" << endl;
 	for (int a = 0; a < Check_air.size(); a++) {
-		cout << "" << endl;
-		cout << " [[  List of planes  ]]" << endl;
 		cout << "" << endl;
 		cout << " (" << a + 1 << ")" << " Airplane name : " << Check_air[a].getAp() << endl;
 		cout << "     Company : " << Check_air[a].getCom() << endl;
 		cout << "     Size : row " << Check_air[a].getRow() << "   column " << Check_air[a].getCol() << endl;
 		cout << "" << endl;
+		cout << "" << endl;
 	}
 }
 void Show_Flight_Status(vector <Flight> Check_flight) {
+	cout << "" << endl;
+	cout << " [[  List of flight plans  ]]" << endl;
 	for (int a = 0; a < Check_flight.size(); a++) {
-		cout << "" << endl;
-		cout << " [[  List of flight plans  ]]" << endl;
 		cout << "" << endl;
 		cout << " (" << a + 1 << ")"<< " Airplane name : " << Check_flight[a].getAir().getAp() << endl;
 		cout << "     Company : " << Check_flight[a].getAir().getCom() << endl;
