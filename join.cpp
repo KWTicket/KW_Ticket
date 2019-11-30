@@ -65,6 +65,7 @@ Guest join(vector<Guest> DB)
 	cout << "   Address : ";
 	cin >> ad;
 	cout << "" << endl;
+	cout << "" << endl;
 	cout << "              ♡ Congratulations !! ♡" << endl;
 	cout << "     ♡ Your membership has been completed ♡" << endl;
 	cout << "♡ Have a comfortable and happy trip with KW-TICKET ♡" << endl;
